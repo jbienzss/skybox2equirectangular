@@ -16,14 +16,18 @@ height of equirectangular image is the half of width.
 e.g: to convert all skybox downloaded to a equirectangular:  
 
     $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" equi"; } ' | xargs -n 2 ./matterskyconv.sh
+
+or just
+
+    $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\""; } ' | xargs -n 2 ./matterskyconv.sh
 	
 to convert all skybox downloaded to a cross cubemap:  
 
-ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" cross"; } ' | xargs -n 2 ./matterskyconv.sh
+    $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" cross"; } ' | xargs -n 2 ./matterskyconv.sh
 
 to convert all skybox downloaded to a strip cubemap:  
 
-ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" strip"; } ' | xargs -n 2 ./matterskyconv.sh
+    $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" strip"; } ' | xargs -n 2 ./matterskyconv.sh
 
 (both sh scripts and skyboxs must be in the same folder)
 
