@@ -4,15 +4,26 @@
 
 script to map 6 skybox cubemap faces into an equirectangular projection with ffmpeg v360 filter. This script adds automatically exif tags of 360 equirectangular pano view, this allows to view the pano in viewers like Ricoh Theta https://play.google.com/store/apps/details?id=com.theta360&hl=en&gl=US  
 
+this script is also able to convert a skybox into a cubemap in cross or strip layout, compatible with Unity and other engines.
+
 the default size of equirectangular image result is 4 * (cube face width) width.  
 height of equirectangular image is the half of width.  
 
 `sky2equi.sh` is the main tool  
+`sky2cross.sh` and `sky2strip.sh` are also available
 
 `mattersky2equi.sh` is a tool to simplify the conversion for matterport skybox downloaded with https://github.com/fdd4s/matterport-downloader  
 e.g: to convert all skybox downloaded to a equirectangular:  
 
-    $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\""; } ' | xargs -n 1 ./mattersky2equi.sh  
+    $ ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" equi"; } ' | xargs -n 2 ./matterskyconv.sh
+	
+to convert all skybox downloaded to a cross cubemap:  
+
+ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" cross"; } ' | xargs -n 2 ./matterskyconv.sh
+
+to convert all skybox downloaded to a strip cubemap:  
+
+ls -1 pan*skybox1*jpg | awk ' { print "\"" $0 "\" strip"; } ' | xargs -n 2 ./matterskyconv.sh
 
 (both sh scripts and skyboxs must be in the same folder)
 
@@ -26,18 +37,22 @@ this code is designed to work over linux (as /dev/shm ram tmpfs)
 
 ## Usage
 
-    $ ./sky2equi.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]  
+    $ ./sky2equi.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
+	$ ./sky2cross.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
+	$ ./sky2strip.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
 
 ## Examples
 
     $ ./sky2equi.sh f.jpg b.jpg r.jpg l.jpg t.jpg b.jpg equi.jpg  
     $ ./sky2equi.sh f.jpg b.jpg r.jpg l.jpg t.jpg b.jpg equi.jpg 4096  
+    $ ./sky2cross.sh f.jpg b.jpg r.jpg l.jpg t.jpg b.jpg cross.jpg  
+	$ ./sky2strip.sh f.jpg b.jpg r.jpg l.jpg t.jpg b.jpg strip.jpg  
 
 ## Known issues
 
 "montage-im6.q16: cache resources exhausted " can be resolved changing ImageMagick configuration, more info here: https://github.com/ImageMagick/ImageMagick/issues/396  
 
-## Viewers
+## Equirectangular Viewers
 
 Android: Ricoh Theta App https://play.google.com/store/apps/details?id=com.theta360&hl=en&gl=US  
 
