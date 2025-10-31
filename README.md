@@ -42,8 +42,8 @@ this code is designed to work over linux (as /dev/shm ram tmpfs)
 ## Usage
 
     $ ./sky2equi.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
-	$ ./sky2cross.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
-	$ ./sky2strip.sh <front> <back> <right> <left> <top> <bottom> <equirectangular> [<width>]
+	$ ./sky2cross.sh <front> <back> <right> <left> <top> <bottom> <cross> [<width>]
+	$ ./sky2strip.sh <front> <back> <right> <left> <top> <bottom> <strip> [<width>]
 
 ## Examples
 
